@@ -154,9 +154,12 @@ dico2 = init_station(f2)
 def direction_of(dico_w_name,line,path,stations_number):
     for i in range(len(dico_w_name)):
         if line==int(dico_w_name[i][1]) and  dico_w_name[i][2]=='True': #check if it's a terminus or not
-            path1 = dicoDjikstra(dico,i,stations_number) #get the path from the starting point (stations_number) to the terminus
+            path1 = dicoDjikstra(dico,stations_number,i) #get the path from the starting point (stations_number) to the terminus
             new_path1 = path1[1][1:]
             new_path = path[1][1:]
+            print(new_path)
+            print(new_path1)
+            print("ligne =", line)
             for line1 in new_path: #check if it's the right terminus by comparing the 2 paths
                 for line2 in new_path1:
                     if line1 ==line2:
@@ -298,11 +301,9 @@ def test():
     print(dico2[152])
 
 if __name__ == '__main__':
-    print(dicoDjikstra(dico,3,58))
-    drawing_path(dicoDjikstra(dico,3,58))
-    ACPM = kruskal(weighted_edges)
-    drawing_ACPM(ACPM)
-    read_itinary(dico2,dicoDjikstra(dico,3,58))
+    print(dicoDjikstra(dico,4,13))
+    read_itinary(dico2,dicoDjikstra(dico,4,13))
+    drawing_path(dicoDjikstra(dico, 4, 13))
 
 
 
